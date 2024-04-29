@@ -1,34 +1,40 @@
-import Clocks from "./components/Clocks/Clocks";
-import Forms from "./components/Forms/Forms";
+import { useQuery } from "react-query";
+import apiClient from "./services/api-client";
+import CoinBackGround from "./assets/coin-background.png";
+import {
+  HEADLINE_TEXT,
+  RANDOM_TEXT_1,
+  RANDOM_TEXT_2,
+  RANDOM_TEXT_3,
+} from "./components/Forms/constants/constants";
+import Forms from "./components/Forms";
 
 function App() {
+  const { data } = useQuery(["curency"], () => apiClient.get("prices.json"));
+
   return (
     <>
-      <div className="bg-[#DFECF4]  h-screen content-center px-5 ">
-        <div className="grid grid-cols-2">
+      <div className="bg-[#DFECF4]  h-screen content-center px-20  grid grid-cols-3">
+        <div className=" col-span-2 ">
           <div>
-            <p className="text-lime-800 text-8xl	font-bold	">MONEY EXCHANGE</p>
-            <p className="text-black text-lg">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum
+            <p className="text-lime-800 text-8xl	font-bold	">{HEADLINE_TEXT}</p>
+            <p className="text-black text-lg w-3/4">
+              {RANDOM_TEXT_1}
+              <span className="text-lime-800 text-lg	font-bold">
+                {RANDOM_TEXT_2}
+              </span>
+              {RANDOM_TEXT_3}
             </p>
           </div>
-          <div>
-            <Clocks />
+          <div className="mt-10">
+            <Forms data={data?.data} />
           </div>
         </div>
 
-        <div className="grid grid-cols-3 mt-20">
-          <div className="col-span-1"></div>
-          <div className="col-span-2">
-            <Forms />
-          </div>
-        </div>
+        <div
+          className={`col-span-1 flex justify-center bg-center	bg-no-repeat bg-contain `}
+          style={{ backgroundImage: `url(${CoinBackGround})` }}
+        ></div>
       </div>
     </>
   );
