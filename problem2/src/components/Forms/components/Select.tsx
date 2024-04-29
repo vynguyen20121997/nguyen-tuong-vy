@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import CurencyData from "../../../type/types";
+import CurencyData from "../../../types/types";
 
 interface SelectProps {
   name: string;

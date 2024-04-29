@@ -1,4 +1,4 @@
-import CurrencyExchangeData from "../type/types";
+import CurrencyExchangeData from "../types/types";
 
 export const convert = (data: CurrencyExchangeData) => {
     const exchageRate = Number(data.send) / Number(data.receive);

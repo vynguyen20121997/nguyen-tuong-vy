@@ -2,7 +2,7 @@ import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { FC } from "react";
-import CurencyData from "../../type/types";
+import { CurencyData, CurrencyExchangeData } from "../../types/types";
 import { convert } from "../../utils/convert";
 import { DEFAULT_VALUES } from "./constants/constants";
 import useFormSchema from "./validations/form";
@@ -24,7 +24,7 @@ const Forms: FC<Props> = ({ data }) => {
 
   const { handleSubmit, setValue } = methods;
 
-  const handleFormSubmit = handleSubmit((data) => {
+  const handleFormSubmit = handleSubmit((data: CurrencyExchangeData) => {
     const convertedRate = convert(data);
     if (convertedRate) {
       setValue("receiveAmount", convertedRate);

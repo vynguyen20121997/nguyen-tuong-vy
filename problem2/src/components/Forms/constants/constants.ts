@@ -1,6 +1,6 @@
 export const DEFAULT_VALUES = {
-  send: "Please Select",
-  receive: "Please Select",
+  send: 0,
+  receive: 0,
   sendAmount: 0,
   receiveAmount: 0,
 };
